@@ -114,7 +114,7 @@ PROGRAM:SWEEPER
 :If [B](R,T)=0
 :Then
 :J-1→J
-:Text(62-B,A+1,"   “)
+:Text(62-B,A+1,"   ")
 :Line(A,B,A+4,B)
 :Pt-On(A+2,B-2)
 :Pt-On(A+2,B-3)
