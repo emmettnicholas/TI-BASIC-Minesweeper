@@ -1,0 +1,165 @@
+PROGRAM:SWEEPER
+:AxesOff
+:138→I:33→J
+:ClrHome
+:Output(2,3,"Minesweeper")
+:Output(3,3,"by emmett")
+:Output(5,3,"planting")
+:Output(6,3,"mines:  /33")
+:{11,21}→dim([A])
+:Fill(0,[A])
+:{11,21}→dim([B])
+:Fill(0,[B])
+:0→C
+:Lbl A0
+:Output(6,9,C)
+:randInt(2,10)→S
+:randInt(2,20)→T
+:If [A](S,T)<0
+:Goto A0
+:C+1→C
+:If C=34
+:Goto A1
+:[A](S,T)-10→[A](S,T)
+:[A](S-1,T-1)+1→A(S-1,T-1)
+:[A](S-1,T)+1→A(S-1,T)
+:[A](S-1,T+1)+1→A(S-1,T+1)
+:[A](S,T-1)+1→A(S,T-1)
+:[A](S,T+1)+1→A(S,T+1)
+:[A](S+1,T-1)+1→A(S+1,T-1)
+:[A](S+1,T)+1→A(S+1,T)
+:[A](S+1,T+1)+1→A(S+1,T+1)
+:Goto A0
+:Lbl A1
+:ClrHome
+:ClrDraw
+:0→Xmin
+:94→Xmax
+:0→Ymin
+:62→Ymax
+:For(A,2,10)
+:For(B,2,20)
+:If [A](A,B)=0
+:Then
+:5→[B](A,B)
+:Text(7A-14,5B-9,"0")
+:I-1→I
+:Goto AB
+:End
+:End
+:End
+:Lbl AB
+:0→A:62→B:2→R:2→T:50→U:50→V
+:Lbl 1
+:Line(A,B,A+4,B)
+:Line(A,B,A,B-6)
+:Line(A+4,B,A+4,B-6)
+:Line(A,B-6,A+4,B-6)
+:If A≠U or B≠V
+:Then
+:Line(U,V,U+4,V,0)
+:Line(U,V,U,V-6,0)
+:Line(U+4,V,U+4,V-6,0)
+;Line(U,V-6,U+4,V-6,0)
+;End
+:A→U
+:B→V
+:Lbl K
+:getKey→K
+:If K=0
+:Goto K
+:If K=24 and T>2
+:Then
+:A-5→A
+:T-1→T
+:End
+:If K=25 and R>2
+:Then
+:B+7→B
+:R-1→R
+:End
+:If K=26 and T<20
+:Then
+:A+5→A
+:T+1→T
+:End
+:If K=34 and R<10
+:Then
+:B-7→B
+:R+1→R
+:End
+:If K=21
+:Goto N
+:If K=31
+:Goto M
+:If K=11
+:Goto M9
+:Goto 1
+:Lbl M9
+:ClrHome
+:Output(1,1,"Mines left:")
+:Output(1,13,J)
+:Lbl M8
+:getKey→K
+:If K≠0
+:Then
+:Pxl-Change(1,1)
+:Pxl-Change(1,1)
+:Goto K
+:End
+:Goto M8
+:Lbl M
+:If [B](R,T)=5
+:Goto K
+:If [B](R,T)=0
+:Then
+:J-1→J
+:Text(62-B,A+1,"   “)
+:Line(A,B,A+4,B)
+:Pt-On(A+2,B-2)
+:Pt-On(A+2,B-3)
+:Pt-On(A+2,B-4)
+:Pt-On(A+1,B-3)
+:Pt-On(A+3,B-3)
+:1→[B](R,T)
+:Goto K
+:End
+:If [B](R,T)=1
+:Then
+:J+1→J
+:Text(62-B,A+1,"   ")
+:Line(A,B,A+4,B)
+:0→[B](R,T)
+:Goto K
+:End
+:Lbl N
+:If [B](R,T)=5 or [B](R,T)=1
+:Goto K
+:If [A](R,T)<0
+:Goto L
+:Text(62-B,A+1,[A](R,T))
+:I-1→I
+:Line(A,B,A+4,B)
+:Line(A+4,B,A+4,B-6)
+:5→[B](R,T)
+:If I=0
+:Goto W
+:Goto K
+:Lbl L
+:Text(-1,1,1,"Failure!")
+:Text(7R-14,5T-9,"M")
+:For(M,2,10)
+:For(N,2,20)
+:If [A](M,N)<0 and [B](M,N)=0
+:Text(7M-14,5N-9,"M")
+:If [A](M,N)≥0 and [B](M,N)=1
+:Text(7M-14,5N-9,"X")
+:End
+:End
+:DelVar [A]
+:DelVar [B]
+:Stop
+:Lbl W
+:Text(-1,1,1,"Cleared!")
+:DelVar [A]
+:DelVar [B]
