@@ -4,7 +4,7 @@ This is one of the first programs I ever wrote, provided here for fun and safeke
 
 I wrote it on the TI-83+, but it should work on any [TI Z80](http://en.wikipedia.org/wiki/TI-BASIC#TI-83.2F84_.28Z80.29) calculator. Here's a shot of it in action:
 
-![screenshot](http://i.imgur.com/p7LRJ.jpg)
+![screenshot](https://raw.github.com/emmettnicholas/TI-BASIC-Minesweeper/master/sweeper.jpg)
 
 ### Dimensions
 
